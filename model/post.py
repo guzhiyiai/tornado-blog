@@ -6,6 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 # 创建对象的基类:
 Base = declarative_base()
 
+
 # 定义对象:
 class Post(Base):
     __tablename__ = 'post'
@@ -15,4 +16,9 @@ class Post(Base):
     content = Column('content', Text, default='', nullable=False)
 
 
+class User(Base):
+    __tablename__ = 'user'
 
+    id = Column(Integer, primary_key=True)
+    name = Column('name', String(50))
+    email = Column('email', String(50), nullable=False, unique=True)
