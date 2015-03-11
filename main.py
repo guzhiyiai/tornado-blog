@@ -31,15 +31,17 @@ class Application(tornado.web.Application):
             # 防跨站伪造请求
             xsrf_cookies=False,
             cookie_secret="test-2001",
-            # debug=setting_const.DEBUG,                  #调试模式
+            login_url="/login",
+            debug=True,                  #调试模式
         )
 
         #服务器初始化
         tornado.web.Application.__init__(self, handlers=urls, **settings)
 
+        # 初始化数据库连接(torndb):
         # self.db = torndb.Connection("localhost", "tornado-test", user="root", password="abc123")
 
-        # 初始化数据库连接:
+        # 初始化数据库连接(sql):
         engine = create_engine('mysql://root:abc123@localhost/tornado-test', echo=True)
         # 创建DBSession类型:
         Base.metadata.create_all(engine)

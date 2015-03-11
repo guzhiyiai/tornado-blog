@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from handlers.index import MainHandler
-from handlers.index import FormHandler
+from handlers.index import LoginHandler, LogoutHandler, HomeHandler
 
 urls = [
     (r'/', MainHandler),
-    (r'/form', FormHandler),
+    (r'/login', LoginHandler),
+    (r'/logout', LogoutHandler),
+    (r'/edit', HomeHandler),
 ]
