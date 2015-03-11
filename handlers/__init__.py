@@ -1,3 +1,3 @@
 
 from index import MainHandler
-from index import FormHandler
+from index import *
