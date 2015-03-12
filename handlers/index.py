@@ -1,22 +1,30 @@
 # -*- coding: utf-8 -*-
 
 from base import BaseHandler
-from model.post import Post
+from models.post import Post
 import tornado.web
+
+from service import PostService
 
 
 class MainHandler(BaseHandler):
     def get(self):
-        db = self.db()
-        post = db.query(Post).filter_by().first()
-        self.render('index.html', post=post)
+        posts = PostService.get_list()
+
+        self.render('index.html', posts=posts)
 
 
 class HomeHandler(BaseHandler):
-    @tornado.web.authenticated
+    # @tornado.web.authenticated
     def get(self):
-        posts = self.db.query("SELECT * FROM post ORDER BY id" "DESC LIMIT 5")
+        posts = PostService.get_list()
         self.render('index.html', posts=posts)
+
+    def post(self):
+        title = self.get_argument("title", None)
+        content = self.get_argument("content", None)
+        post = PostService.add(title, content)
+        self.write(post)
 
 
 class LoginHandler(BaseHandler):
