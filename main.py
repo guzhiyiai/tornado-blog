@@ -13,8 +13,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 from urls import urls
-from model.post import Base
 
+import sys
+sys.path.append("/Users/sniper/learn-code/tornado-web/blog")
 
 define("port", default=8888, help="PORT", type=int)
 
@@ -34,19 +35,8 @@ class Application(tornado.web.Application):
             login_url="/login",
             debug=True,                  #调试模式
         )
-
         #服务器初始化
         tornado.web.Application.__init__(self, handlers=urls, **settings)
-
-        # 初始化数据库连接(torndb):
-        # self.db = torndb.Connection("localhost", "tornado-test", user="root", password="abc123")
-
-        # 初始化数据库连接(sql):
-        engine = create_engine('mysql://root:abc123@localhost/tornado-test', echo=True)
-        # 创建DBSession类型:
-        Base.metadata.create_all(engine)
-        self.db = scoped_session(sessionmaker(bind=engine, autocommit=True))
-
 
 
 if __name__ == "__main__":
