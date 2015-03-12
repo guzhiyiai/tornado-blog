@@ -15,6 +15,13 @@ class Post(Base):
     title = Column('title', String(50))
     content = Column('content', Text, default='', nullable=False)
 
+    def to_dict(self):
+        return dict(
+                id = self.id,
+                title = self.title,
+                content = self.content
+            )
+
 
 class User(Base):
     __tablename__ = 'user'
@@ -22,3 +29,10 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     name = Column('name', String(50))
     email = Column('email', String(50), nullable=False, unique=True)
+
+    def to_dict(self):
+        return dict(
+                id = self.id,
+                name = self.name,
+                email = self.email
+            )
