@@ -39,10 +39,14 @@ class Application(tornado.web.Application):
         tornado.web.Application.__init__(self, handlers=urls, **settings)
 
 
-if __name__ == "__main__":
+def main():
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(Application())
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
+
+
+if __name__ == "__main__":
+    main()
 
 
