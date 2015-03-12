@@ -15,5 +15,5 @@ class PostService(object):
 
     @staticmethod
     def get_list():
-         posts = db.query(Post).all()
-         return [post.to_dict() for post in posts]
+        posts = Post.query.all()
+        return [post.to_dict() for post in posts]

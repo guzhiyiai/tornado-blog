@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import Column, Integer, String, Text
-from sqlalchemy.ext.declarative import declarative_base
 
-# 创建对象的基类:
-Base = declarative_base()
+from extensions import Base
 
 
 # 定义对象:
