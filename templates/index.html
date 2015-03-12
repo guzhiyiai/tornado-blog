@@ -8,6 +8,10 @@
 <body>
     <h1>Hello, tornado World!</h1>
     <h1>Welcome back, </h1>
+        {% for post in posts %}
+        <h1> {{ post.get('title') }} </h1>
+        <h1> {{ post.get('content') }} </h1>
+        {% end %}
     <h2>by <a href="" target="_blank"></a></h2>
     <h2>by <a href="" target="_blank"></a></h2>
 </body>
